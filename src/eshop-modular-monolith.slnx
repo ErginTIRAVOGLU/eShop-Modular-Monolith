@@ -5,12 +5,13 @@
   <Folder Name="/Modules/Catalog/">
     <Project Path="Modules/Catalog/Catalog.csproj" />
   </Folder>
-  <Folder Name="/Modules/Ordering/" >
+  <Folder Name="/Modules/Ordering/">
     <Project Path="Modules/Ordering/Ordering.csproj" />
   </Folder>
   <Folder Name="/Modules/Basket/">
     <Project Path="Modules/Basket/Basket.csproj" />
   </Folder>
-
-  <Folder Name="/Shared/" />
+  <Folder Name="/Shared/">
+    <Project Path="Shared/Shared.csproj" />
+  </Folder>
 </Solution>
