@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,5 +18,14 @@ public static class OrderingModule
         //    .AddApiServices(configuration);
 
         return services;
+    }
+
+    public static IApplicationBuilder UseOrderingModule(this IApplicationBuilder app)
+    {
+        //app.UseApplicationServices();
+        //app.UseInfrastructureServices();
+        //app.UseApiServices();
+
+        return app;
     }
 }
