@@ -1,0 +1,22 @@
+using MediatR;
+
+namespace Catalog.Products.Features.CreateProduct;
+
+public record CreateProductCommand(
+    string Name,
+    List<string> Category,
+    string Description,
+    string ImageFile,
+    decimal price) : IRequest<CreateProductResult>;
+
+public record CreateProductResult(Guid Id);
+
+public class CreateProductHandler 
+    : IRequestHandler<CreateProductCommand, CreateProductResult>
+{
+    public Task<CreateProductResult> Handle(CreateProductCommand command, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
+}
