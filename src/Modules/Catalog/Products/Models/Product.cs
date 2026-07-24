@@ -36,7 +36,7 @@ public class Product : Aggregate<Guid>
         Category = category;
         Description = description;
         ImageFile = imageFile;
-        Price = price; // TODO: This line is wrong
+ 
 
         if (Price != price)
         {
