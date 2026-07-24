@@ -1,0 +1,29 @@
+namespace Catalog.Products.Features.UpdateProduct;
+
+public record UpdateProductRequest(ProductDto Product);
+
+public record UpdateProductResponse(bool IsSuccess);
+
+public class UpdateProductEndpoint : ICarterModule
+{
+    public void AddRoutes(IEndpointRouteBuilder app)
+    {
+        app.MapPut("/products", async (Guid id, UpdateProductRequest request, ISender sender) =>
+        {
+            var command = request.Adapt<UpdateProductCommand>();
+             
+            var result = await sender.Send(command);
+
+            var response = result.Adapt<UpdateProductResponse>();
+
+            return Results.Ok(response);
+        })
+        .WithName("UpdateProduct")
+        .Produces<UpdateProductResponse>(StatusCodes.Status200OK)
+        .ProducesProblem(StatusCodes.Status404NotFound)
+        .ProducesProblem(StatusCodes.Status400BadRequest)
+        .WithSummary("Updates an existing product")
+        .WithDescription("Updates an existing product with the specified details.");
+    }
+
+}
