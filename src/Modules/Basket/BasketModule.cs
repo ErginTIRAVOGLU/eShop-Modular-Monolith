@@ -1,3 +1,4 @@
+using Basket.Data.Repository;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,10 +9,13 @@ namespace Basket;
 
 public static class BasketModule
 {
-    public static IServiceCollection AddBasketModule(this IServiceCollection services, 
+    public static IServiceCollection AddBasketModule(this IServiceCollection services,
         IConfiguration configuration)
     {
-         var connectionString = configuration.GetConnectionString("Database");
+
+        services.AddScoped<IBasketRepository, BasketRepository>();
+
+        var connectionString = configuration.GetConnectionString("Database");
 
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();

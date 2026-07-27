@@ -9,25 +9,18 @@ public class AddItemIntoBasketCommandValidator : AbstractValidator<AddItemIntoBa
 {
     public AddItemIntoBasketCommandValidator()
     {
-        RuleFor(x=>x.UserName).NotEmpty().WithMessage("UserName is required");
-        RuleFor(x=>x.ShoppingCartItem.ProductId).NotEmpty().WithMessage("ProductId is required");
-        RuleFor(x=>x.ShoppingCartItem.Quantity).GreaterThan(0).WithMessage("Quentity must be greater then zero");
+        RuleFor(x => x.UserName).NotEmpty().WithMessage("UserName is required");
+        RuleFor(x => x.ShoppingCartItem.ProductId).NotEmpty().WithMessage("ProductId is required");
+        RuleFor(x => x.ShoppingCartItem.Quantity).GreaterThan(0).WithMessage("Quentity must be greater then zero");
     }
 }
 
-public class AddItemIntoBasketHandler(BasketDbContext dbContext)
+public class AddItemIntoBasketHandler(IBasketRepository repository)
     : ICommandHandler<AddItemIntoBasketCommand, AddItemIntoBasketResult>
 {
     public async Task<AddItemIntoBasketResult> Handle(AddItemIntoBasketCommand command, CancellationToken cancellationToken)
     {
-        var shoppingCart = await dbContext.ShoppingCarts
-            .Include(x=>x.Items)
-            .SingleOrDefaultAsync(x=>x.UserName == command.UserName,cancellationToken);
-        
-        if(shoppingCart is null)
-        {
-            throw new BasketNotFoundException(command.UserName);
-        }
+        var shoppingCart = await repository.GetBasket(command.UserName, false, cancellationToken);
 
         shoppingCart.AddItem(
             command.ShoppingCartItem.ProductId,
@@ -36,8 +29,8 @@ public class AddItemIntoBasketHandler(BasketDbContext dbContext)
             command.ShoppingCartItem.Price,
             command.ShoppingCartItem.ProductName
         );
-
-        await dbContext.SaveChangesAsync(cancellationToken);
+        
+        await repository.SaveChangeAsync(cancellationToken);
 
         return new AddItemIntoBasketResult(shoppingCart.Id);
     }
