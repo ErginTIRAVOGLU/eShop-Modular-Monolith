@@ -22,7 +22,7 @@ public class RemoveItemFromBasketHandler(IBasketRepository repository)
 
         shoppingCart.RemoveItem(command.ProductId);
 
-        await repository.SaveChangeAsync(cancellationToken);
+        await repository.SaveChangesAsync(command.UserName, cancellationToken);
         
         return new RemoveItemFromBasketResult(shoppingCart.Id);
     }

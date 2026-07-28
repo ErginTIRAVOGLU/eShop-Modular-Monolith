@@ -1,5 +1,6 @@
 using Basket.Data.Repository;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Shared.Data;
@@ -13,7 +14,14 @@ public static class BasketModule
         IConfiguration configuration)
     {
 
-        services.AddScoped<IBasketRepository, BasketRepository>();
+        services.AddScoped<IBasketRepository, BasketRepository>(); 
+        // manual - not scaleable less maintable not ideal larger applications
+        // services.AddScoped<IBasketRepository>(provider =>
+        // {
+        //    var basketRepository = provider.GetRequiredService<BasketRepository>();
+        //    return new CachedBasketRepository(basketRepository,provider.GetRequiredService<IDistributedCache>());
+        // });
+        services.Decorate<IBasketRepository,CachedBasketRepository>();
 
         var connectionString = configuration.GetConnectionString("Database");
 

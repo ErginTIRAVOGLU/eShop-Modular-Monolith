@@ -4,6 +4,7 @@ public abstract class Aggregate<TId> : Entity<TId>, IAggregate<TId>
 {
     public readonly List<IDomainEvent> _domainEvents = new();
 
+    [Newtonsoft.Json.JsonIgnore]
     public IReadOnlyList<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
     public void AddDomainEvent(IDomainEvent domainEvent)
