@@ -1,24 +1,24 @@
 <Solution>
   <Folder Name="/Bootstrapper/">
-    <Project Path="Bootstrapper/Api/Api.csproj" />
+    <Project Path="../../../../../../../../Dev/csharp/modular-monolith-net/src/Bootstrapper/Api/Api.csproj" />
   </Folder>
   <Folder Name="/Modules/" />
   <Folder Name="/Modules/Catalog/">
-    <Project Path="Modules/Catalog/Catalog/Catalog.csproj" />
-    <Project Path="Modules/Catalog/Catalog.Contracts/Catalog.Contracts.csproj" />
+    <Project Path="../../../../../../../../Dev/csharp/modular-monolith-net/src/Modules/Catalog/Catalog.Contracts/Catalog.Contracts.csproj" />
+    <Project Path="../../../../../../../../Dev/csharp/modular-monolith-net/src/Modules/Catalog/Catalog/Catalog.csproj" />
   </Folder>
   <Folder Name="/Modules/Ordering/">
-    <Project Path="Modules/Ordering/Ordering/Ordering.csproj" />
+    <Project Path="../../../../../../../../Dev/csharp/modular-monolith-net/src/Modules/Ordering/Ordering/Ordering.csproj" />
   </Folder>
   <Folder Name="/Modules/Basket/">
-    <Project Path="Modules/Basket/Basket/Basket.csproj" />
+    <Project Path="../../../../../../../../Dev/csharp/modular-monolith-net/src/Modules/Basket/Basket/Basket.csproj" />
   </Folder>
   <Folder Name="/Shared/">
-    <Project Path="Shared/Shared/Shared.csproj" />
-      <Project Path="Shared/Shared.Contracts/Shared.Contracts.csproj" />
+    <Project Path="../../../../../../../../Dev/csharp/modular-monolith-net/src/Shared/Shared.Contracts/Shared.Contracts.csproj" />
+    <Project Path="../../../../../../../../Dev/csharp/modular-monolith-net/src/Shared/Shared.Messaging/Shared.Messaging.csproj" Id="556e6c0b-cc11-4ccc-b1a9-0eb3fcac4515" />
+    <Project Path="../../../../../../../../Dev/csharp/modular-monolith-net/src/Shared/Shared/Shared.csproj" />
   </Folder>
- 
-  <Project Path="docker-compose.dcproj">
+  <Project Path="../../../../../../../../Dev/csharp/modular-monolith-net/src/docker-compose.dcproj">
     <Build />
   </Project>
 </Solution>
