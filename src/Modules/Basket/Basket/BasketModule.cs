@@ -1,3 +1,4 @@
+using Basket.Data.Processors;
 using Basket.Data.Repository;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Caching.Distributed;
@@ -34,6 +35,8 @@ public static class BasketModule
             options.UseNpgsql(connectionString);
         });
 
+        services.AddHostedService<OutboxProcessor>();
+        
         return services;
     }
 
